@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Workout } from '../types';
 import { Button } from './Button';
@@ -46,7 +47,7 @@ export const WorkoutSelector: React.FC<WorkoutSelectorProps> = ({ workouts, onSe
               <img src={workout.image} alt={workout.name} className="w-full h-48 object-contain bg-gray-100"/>
             )}
             <div className="p-6">
-              <h3 className="text-xl font-semibold text-indigo-700 mb-2">{workout.name}</h3>
+              <h3 className="text-xl font-semibold text-orange-700 mb-2">{workout.name}</h3> {/* Changed to orange */}
               <p className="text-gray-600 text-sm mb-3 h-16 overflow-y-auto">{workout.description}</p>
               <div className="flex justify-between items-center mb-4">
                 {/* Static duration/points removed, will be dynamic */}

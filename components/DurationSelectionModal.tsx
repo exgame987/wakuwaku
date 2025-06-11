@@ -1,14 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { Workout } from '../types';
 import { Button } from './Button';
 import { PlusIcon } from './icons/PlusIcon';
 import { MinusIcon } from './icons/MinusIcon';
-import { StarIcon } from './icons/StarIcon';
+import { StarIcon } from './icons/StarIcon'; // Points icon remains StarIcon/yellow
 import { ClockIcon } from './icons/ClockIcon';
-import { 
-  WORKOUT_DURATION_STEP_SECONDS, 
-  POINTS_PER_STEP, 
-  MIN_WORKOUT_DURATION_STEPS, 
+import {
+  WORKOUT_DURATION_STEP_SECONDS,
+  POINTS_PER_STEP,
+  MIN_WORKOUT_DURATION_STEPS,
   MAX_WORKOUT_DURATION_STEPS,
   DEFAULT_WORKOUT_DURATION_STEPS
 } from '../constants';
@@ -44,21 +45,21 @@ export const DurationSelectionModal: React.FC<DurationSelectionModalProps> = ({ 
   }, [onCancel]);
 
   return (
-    <div 
+    <div
         className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[100] p-4"
         onClick={onCancel}
         role="dialog"
         aria-modal="true"
         aria-labelledby="duration-modal-title"
     >
-      <div 
+      <div
         className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 id="duration-modal-title" className="text-2xl sm:text-3xl font-bold text-indigo-700 mb-6 text-center">
+        <h2 id="duration-modal-title" className="text-2xl sm:text-3xl font-bold text-orange-700 mb-6 text-center"> {/* Changed to orange */}
           {workout.name} - 時間設定
         </h2>
-        
+
         <div className="mb-6 text-center">
           <p className="text-lg text-gray-700 mb-2">ワークアウトの時間を選択してください。</p>
           <div className="flex items-center justify-center space-x-4 my-4">
@@ -72,8 +73,8 @@ export const DurationSelectionModal: React.FC<DurationSelectionModalProps> = ({ 
             >
               <MinusIcon className="w-5 h-5" />
             </Button>
-            <div 
-                className="text-3xl sm:text-4xl font-bold text-indigo-600 w-28 text-center"
+            <div
+                className="text-3xl sm:text-4xl font-bold text-orange-600 w-28 text-center" // Changed to orange
                 aria-live="polite"
             >
                 {currentDuration}秒
@@ -92,9 +93,9 @@ export const DurationSelectionModal: React.FC<DurationSelectionModalProps> = ({ 
           <p className="text-xs text-gray-500">({MIN_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒 から {MAX_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒まで)</p>
         </div>
 
-        <div className="mb-8 p-4 bg-indigo-50 rounded-lg text-center">
+        <div className="mb-8 p-4 bg-orange-50 rounded-lg text-center"> {/* Changed to orange */}
           <div className="flex items-center justify-center text-xl sm:text-2xl font-semibold text-green-600">
-            <StarIcon className="w-6 h-6 mr-2 text-yellow-500" />
+            <StarIcon className="w-6 h-6 mr-2 text-yellow-500" /> {/* Points icon remains yellow */}
             獲得予定ポイント: {currentPoints}
           </div>
           <div className="flex items-center justify-center text-md sm:text-lg text-gray-600 mt-1">
@@ -104,17 +105,17 @@ export const DurationSelectionModal: React.FC<DurationSelectionModalProps> = ({ 
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <Button 
-            onClick={() => onStart(currentDuration, currentPoints)} 
-            variant="primary" 
+          <Button
+            onClick={() => onStart(currentDuration, currentPoints)}
+            variant="primary"
             size="lg"
             className="w-full"
           >
-            この設定で開始
+            スタート
           </Button>
-          <Button 
-            onClick={onCancel} 
-            variant="ghost" 
+          <Button
+            onClick={onCancel}
+            variant="ghost"
             size="lg"
             className="w-full"
           >

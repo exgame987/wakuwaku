@@ -55,6 +55,13 @@
     )
   );
 
+  // components/icons/HeartIcon.tsx
+  const HeartIcon = ({ className }) => (
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: `w-6 h-6 ${className || ''}` },
+      React.createElement('path', { d: "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" })
+    )
+  );
+
   // components/icons/FitnessIcon.tsx
   const FitnessIcon = ({ className }) => (
     React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: `w-6 h-6 ${className || ''}` },
@@ -68,7 +75,7 @@
       React.createElement('path', { d: "M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" })
     )
   );
-  
+
   // components/icons/PlusIcon.tsx
   const PlusIcon = ({ className }) => (
     React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: `w-5 h-5 ${className || ''}` },
@@ -95,11 +102,11 @@
     const baseStyles = 'font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition-all duration-150 ease-in-out disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center justify-center';
     let variantStyles = '';
     switch (variant) {
-      case 'primary': variantStyles = 'bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500'; break;
+      case 'primary': variantStyles = 'bg-orange-600 hover:bg-orange-700 text-white focus:ring-orange-500'; break; // Changed to orange
       case 'secondary': variantStyles = 'bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-400 border border-gray-300'; break;
       case 'danger': variantStyles = 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500'; break;
       case 'success': variantStyles = 'bg-green-500 hover:bg-green-600 text-white focus:ring-green-400'; break;
-      case 'ghost': variantStyles = 'bg-transparent hover:bg-indigo-50 text-indigo-600 focus:ring-indigo-500 shadow-none'; break;
+      case 'ghost': variantStyles = 'bg-transparent hover:bg-orange-100 text-orange-600 focus:ring-orange-500 shadow-none'; break; // Changed to orange
     }
     let sizeStyles = '';
     switch (size) {
@@ -107,11 +114,12 @@
       case 'md': sizeStyles = 'px-5 py-2.5 text-base'; break;
       case 'lg': sizeStyles = 'px-8 py-3 text-lg'; break;
     }
+
     return (
       React.createElement('button', { className: `${baseStyles} ${variantStyles} ${sizeStyles} ${className}`, ...props },
-        leftIcon && React.createElement('span', { className: "mr-2" }, leftIcon),
+        leftIcon && React.createElement('span', { className: children || rightIcon ? "mr-2" : "" }, leftIcon),
         children,
-        rightIcon && React.createElement('span', { className: "ml-2" }, rightIcon)
+        rightIcon && React.createElement('span', { className: children || leftIcon ? "ml-2" : "" }, rightIcon)
       )
     );
   };
@@ -123,28 +131,40 @@
         React.createElement('div', { className: "container mx-auto px-4 sm:px-6 lg:px-8" },
           React.createElement('div', { className: "flex items-center justify-between h-20" },
             React.createElement('h1', {
-              className: "text-3xl font-bold text-indigo-700 cursor-pointer",
               onClick: () => setView('home'),
-              'aria-label': `${APP_NAME} ホーム`
-            }, APP_NAME),
-            React.createElement('nav', { className: "flex items-center space-x-4" },
+              className: "cursor-pointer focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 rounded", // Changed to orange
+              'aria-label': `${APP_NAME} ホームに移動`,
+              tabIndex: 0,
+              onKeyDown: (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  setView('home');
+                }
+              }
+            }, React.createElement('img', {
+              src: "https://github.com/exgame987/wakuwaku/blob/main/img/wakutore.png?raw=true",
+              alt: `${APP_NAME} ロゴ`,
+              className: "h-12 sm:h-14 object-contain"
+            })),
+            React.createElement('nav', { className: "flex items-center space-x-2" },
               React.createElement(Button, {
                 onClick: () => setView('workout_selection'),
                 variant: currentView.startsWith('workout') ? 'primary' : 'ghost',
                 size: "md",
-                leftIcon: React.createElement(FitnessIcon, { className: "w-5 h-5" }),
+                className: "p-2",
+                leftIcon: React.createElement(FitnessIcon, { className: "w-6 h-6" }),
                 'aria-label': "ワークアウトページへ移動"
-              }, "ワークアウト"),
+              }),
               React.createElement(Button, {
                 onClick: () => setView('gallery'),
                 variant: currentView === 'gallery' || currentView === 'image_fullscreen' ? 'primary' : 'ghost',
                 size: "md",
-                leftIcon: React.createElement(GalleryIcon, { className: "w-5 h-5" }),
+                className: "p-2",
+                leftIcon: React.createElement(GalleryIcon, { className: "w-6 h-6" }),
                 'aria-label': "ギャラリーページへ移動"
-              }, "ギャラリー"),
-              React.createElement('div', { className: "flex items-center bg-yellow-400 text-yellow-900 font-semibold px-4 py-2 rounded-full shadow", 'aria-live': "polite" },
-                React.createElement(StarIcon, { className: "w-6 h-6 mr-2 text-yellow-700" }),
-                React.createElement('span', null, `${points} ポイント`)
+              }),
+              React.createElement('div', { className: "flex items-center bg-pink-500 text-white font-semibold px-4 py-2 rounded-full shadow ml-2", 'aria-live': "polite" }, // Pink theme for points
+                React.createElement(HeartIcon, { className: "w-6 h-6 mr-2 text-white" }), // HeartIcon
+                React.createElement('span', null, `${points} Pt`)
               )
             )
           )
@@ -179,7 +199,7 @@
             className: "bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-md transform transition-all",
             onClick: (e) => e.stopPropagation()
           },
-          React.createElement('h2', { id: "duration-modal-title", className: "text-2xl sm:text-3xl font-bold text-indigo-700 mb-6 text-center" },
+          React.createElement('h2', { id: "duration-modal-title", className: "text-2xl sm:text-3xl font-bold text-orange-700 mb-6 text-center" }, // Changed to orange
             `${workout.name} - 時間設定`
           ),
           React.createElement('div', { className: "mb-6 text-center" },
@@ -188,16 +208,16 @@
               React.createElement(Button, { onClick: decrementSteps, disabled: currentSteps <= MIN_WORKOUT_DURATION_STEPS, variant: "secondary", size: "md", 'aria-label': "時間を減らす", className: "p-3" },
                 React.createElement(MinusIcon, { className: "w-5 h-5" })
               ),
-              React.createElement('div', { className: "text-3xl sm:text-4xl font-bold text-indigo-600 w-28 text-center", 'aria-live': "polite" }, `${currentDuration}秒`),
+              React.createElement('div', { className: "text-3xl sm:text-4xl font-bold text-orange-600 w-28 text-center", 'aria-live': "polite" }, `${currentDuration}秒`), // Changed to orange
               React.createElement(Button, { onClick: incrementSteps, disabled: currentSteps >= MAX_WORKOUT_DURATION_STEPS, variant: "secondary", size: "md", 'aria-label': "時間を増やす", className: "p-3" },
                 React.createElement(PlusIcon, { className: "w-5 h-5" })
               )
             ),
             React.createElement('p', { className: "text-xs text-gray-500" }, `(${MIN_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒 から ${MAX_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒まで)`)
           ),
-          React.createElement('div', { className: "mb-8 p-4 bg-indigo-50 rounded-lg text-center" },
+          React.createElement('div', { className: "mb-8 p-4 bg-orange-50 rounded-lg text-center" }, // Changed to orange
             React.createElement('div', { className: "flex items-center justify-center text-xl sm:text-2xl font-semibold text-green-600" },
-              React.createElement(StarIcon, { className: "w-6 h-6 mr-2 text-yellow-500" }),
+              React.createElement(StarIcon, { className: "w-6 h-6 mr-2 text-yellow-500" }), // Points icon remains yellow
               `獲得予定ポイント: ${currentPoints}`
             ),
             React.createElement('div', { className: "flex items-center justify-center text-md sm:text-lg text-gray-600 mt-1" },
@@ -206,7 +226,7 @@
             )
           ),
           React.createElement('div', { className: "flex flex-col sm:flex-row gap-3" },
-            React.createElement(Button, { onClick: () => onStart(currentDuration, currentPoints), variant: "primary", size: "lg", className: "w-full" }, "この設定で開始"),
+            React.createElement(Button, { onClick: () => onStart(currentDuration, currentPoints), variant: "primary", size: "lg", className: "w-full" }, "スタート"),
             React.createElement(Button, { onClick: onCancel, variant: "ghost", size: "lg", className: "w-full" }, "キャンセル")
           )
         )
@@ -242,7 +262,7 @@
             React.createElement('div', { key: workout.id, className: "bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300" },
               workout.image && React.createElement('img', { src: workout.image, alt: workout.name, className: "w-full h-48 object-contain bg-gray-100" }),
               React.createElement('div', { className: "p-6" },
-                React.createElement('h3', { className: "text-xl font-semibold text-indigo-700 mb-2" }, workout.name),
+                React.createElement('h3', { className: "text-xl font-semibold text-orange-700 mb-2" }, workout.name), // Changed to orange
                 React.createElement('p', { className: "text-gray-600 text-sm mb-3 h-16 overflow-y-auto" }, workout.description),
                 React.createElement('div', { className: "flex justify-between items-center mb-4" },
                   React.createElement('span', { className: "text-sm text-gray-500" }, "時間を選択"),
@@ -261,7 +281,7 @@
       )
     );
   };
-  
+
   // components/WorkoutInProgress.tsx
   const AD_DURATION_SECONDS = 30;
   const AD_VIDEO_URL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
@@ -304,7 +324,7 @@
     const progressPercentage = ((workout.durationSeconds - timeLeft) / workout.durationSeconds) * 100;
 
     return (
-      React.createElement('div', { className: "p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-lg shadow-2xl" },
+      React.createElement('div', { className: "p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg shadow-2xl" }, // Changed gradient to orange/red
         React.createElement('div', { className: "bg-white/20 p-8 rounded-xl shadow-xl max-w-2xl w-full text-center" },
           showAd && React.createElement('div', { className: "mb-6 bg-black/50 p-4 rounded-lg", 'aria-label': "広告エリア" },
             React.createElement('video', {
@@ -320,7 +340,7 @@
               React.createElement('svg', { className: "w-full h-full", viewBox: "0 0 100 100", 'aria-hidden': "true" },
                 React.createElement('circle', { className: "text-white/30", strokeWidth: "10", stroke: "currentColor", fill: "transparent", r: "45", cx: "50", cy: "50" }),
                 React.createElement('circle', {
-                  className: "text-yellow-400", strokeWidth: "10", strokeDasharray: "283", strokeDashoffset: 283 - (283 * progressPercentage) / 100,
+                  className: "text-yellow-400", strokeWidth: "10", strokeDasharray: "283", strokeDashoffset: 283 - (283 * progressPercentage) / 100, // Progress color remains yellow
                   strokeLinecap: "round", stroke: "currentColor", fill: "transparent", r: "45", cx: "50", cy: "50", transform: "rotate(-90 50 50)"
                 })
               ),
@@ -348,7 +368,7 @@
         !isUnlocked && React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4" },
           React.createElement(LockIcon, { className: "w-12 h-12 text-white opacity-70 mb-2", 'aria-hidden': "true" }),
           React.createElement('div', { className: "flex items-center text-yellow-400 font-semibold text-lg mb-3" },
-            React.createElement(StarIcon, { className: "w-5 h-5 mr-1", 'aria-hidden': "true" }), `${illustration.cost} ポイント`
+            React.createElement(StarIcon, { className: "w-5 h-5 mr-1", 'aria-hidden': "true" }), `${illustration.cost} ポイント` // Points icon remains yellow StarIcon
           ),
           React.createElement(Button, {
             onClick: onUnlock, disabled: !canAfford, variant: canAfford ? "success" : "secondary", size: "sm", className: "w-full",
@@ -364,7 +384,7 @@
           React.createElement('span', { className: "text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300" }, "全画面表示")
         ),
         React.createElement('div', { className: "p-4" },
-          React.createElement('h3', { className: `text-lg font-semibold ${isUnlocked ? 'text-indigo-700' : 'text-gray-500'}` }, illustration.name),
+          React.createElement('h3', { className: `text-lg font-semibold ${isUnlocked ? 'text-orange-700' : 'text-gray-500'}` }, illustration.name), // Changed to orange for unlocked
           isUnlocked ?
             React.createElement('p', { className: "text-sm text-green-600" }, "アンロック済み") :
             React.createElement('p', { className: "text-sm text-gray-400" }, "ロック中")
@@ -487,9 +507,12 @@
       switch (currentView) {
         case 'home':
           return React.createElement('div', { className: "flex flex-col items-center justify-center text-center p-8 min-h-[calc(100vh-10rem)]" },
-            React.createElement('img', { src: "https://image.cdn2.seaart.me/2025-06-10/d1403m5e878c73c99qog/c9035b2143475b0fd3d6ebaed96867ea_high.webp", alt: "フィットネスアートのモチベーションを高める画像", className: "w-full max-w-2xl aspect-square mx-auto rounded-lg shadow-xl mb-8 object-cover" }),
-            React.createElement('h2', { className: "text-4xl font-bold text-gray-800 mb-6" }, APP_NAME + "へようこそ！"),
-            React.createElement('p', { className: "text-xl text-gray-600 mb-10 max-w-2xl" }, "ワークアウトを完了してポイントを獲得し、そのポイントを使ってギャラリーの美しいデジタルイラストをアンロックしましょう。"),
+            React.createElement('img', {
+              src: "https://image.cdn2.seaart.me/2025-06-10/d1403m5e878c73c99qog/c9035b2143475b0fd3d6ebaed96867ea_high.webp",
+              alt: "フィットネスアートのモチベーションを高める画像",
+              className: "w-full max-w-xl mx-auto rounded-lg shadow-xl mb-8 object-contain"
+            }),
+            React.createElement('p', { className: "text-xl text-gray-600 mb-10 max-w-2xl" }, "一緒にトレーニングをして画像をアンロックしましょう！"),
             React.createElement('div', { className: "space-y-4 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row" },
               React.createElement(Button, { onClick: () => setCurrentView('workout_selection'), variant: "primary", size: "lg", leftIcon: React.createElement(FitnessIcon, null) }, "ワークアウト開始"),
               React.createElement(Button, { onClick: () => setCurrentView('gallery'), variant: "secondary", size: "lg", leftIcon: React.createElement(GalleryIcon, null) }, "ギャラリーを見る")

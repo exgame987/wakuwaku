@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { AppView, Workout, Illustration } from './types';
-import { 
-  WORKOUTS_DATA as BASE_WORKOUTS_DATA, 
-  ILLUSTRATIONS_DATA, 
-  POINTS_STORAGE_KEY, 
-  UNLOCKED_ILLUSTRATIONS_STORAGE_KEY, 
+import {
+  WORKOUTS_DATA as BASE_WORKOUTS_DATA,
+  ILLUSTRATIONS_DATA,
+  POINTS_STORAGE_KEY,
+  UNLOCKED_ILLUSTRATIONS_STORAGE_KEY,
   APP_NAME,
   SOUND_WORKOUT_START,
   SOUND_WORKOUT_COMPLETE,
@@ -79,7 +79,7 @@ const App: React.FC = () => {
     setShowWorkoutCompleteMessage(`おめでとうございます！${pointsAwarded}ポイント獲得しました！`);
     setTimeout(() => setShowWorkoutCompleteMessage(null), 3000);
   }, []);
-  
+
   const handleWorkoutCancel = useCallback(() => {
     setActiveWorkout(null);
     setCurrentView('workout_selection');
@@ -110,14 +110,20 @@ const App: React.FC = () => {
       case 'home':
         return (
           <div className="flex flex-col items-center justify-center text-center p-8 min-h-[calc(100vh-10rem)]">
-            <img 
-              src="https://image.cdn2.seaart.me/2025-06-10/d1403m5e878c73c99qog/c9035b2143475b0fd3d6ebaed96867ea_high.webp" 
-              alt="フィットネスアートのモチベーションを高める画像" 
-              className="w-full max-w-2xl aspect-square mx-auto rounded-lg shadow-xl mb-8 object-cover"
+            <img
+              src="https://image.cdn2.seaart.me/2025-06-10/d1403m5e878c73c99qog/c9035b2143475b0fd3d6ebaed96867ea_high.webp"
+              alt="フィットネスアートのモチベーションを高める画像"
+              className="w-full max-w-xl mx-auto rounded-lg shadow-xl mb-8 object-contain"
             />
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">{APP_NAME}へようこそ！</h2>
+            {/* Removed logo:
+            <img
+              src="https://github.com/exgame987/wakuwaku/blob/main/img/wakutore.png?raw=true"
+              alt={`${APP_NAME} ロゴ`}
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto mb-6 object-contain"
+            />
+            */}
             <p className="text-xl text-gray-600 mb-10 max-w-2xl">
-              ワークアウトを完了してポイントを獲得し、そのポイントを使ってギャラリーの美しいデジタルイラストをアンロックしましょう。
+              一緒にトレーニングをして画像をアンロックしましょう！
             </p>
             <div className="space-y-4 sm:space-y-0 sm:space-x-6 flex flex-col sm:flex-row">
               <Button onClick={() => setCurrentView('workout_selection')} variant="primary" size="lg" leftIcon={<FitnessIcon/>}>
@@ -134,7 +140,7 @@ const App: React.FC = () => {
         return <WorkoutSelector workouts={BASE_WORKOUTS_DATA} onSelectWorkout={handleSelectWorkout} />;
       case 'workout_active':
         if (!activeWorkout) {
-          setCurrentView('workout_selection'); 
+          setCurrentView('workout_selection');
           return null;
         }
         return <WorkoutInProgress workout={activeWorkout} onComplete={handleWorkoutComplete} onCancel={handleWorkoutCancel} />;
@@ -150,7 +156,7 @@ const App: React.FC = () => {
         );
       case 'image_fullscreen':
         if (!viewingIllustration) {
-          setCurrentView('gallery'); 
+          setCurrentView('gallery');
           return null;
         }
         return <FullScreenImageView illustration={viewingIllustration} onClose={handleCloseFullScreenImage} />;
@@ -164,7 +170,7 @@ const App: React.FC = () => {
       <Header points={points} currentView={currentView} setView={setCurrentView} />
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {showWorkoutCompleteMessage && (
-          <div 
+          <div
             className="fixed top-24 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-md shadow-lg z-[1000] transition-opacity duration-300"
             role="alert"
             aria-live="assertive"

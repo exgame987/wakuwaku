@@ -3,7 +3,8 @@ import React from 'react';
 import { Illustration } from '../types';
 import { Button } from './Button';
 import { LockIcon } from './icons/LockIcon';
-import { StarIcon } from './icons/StarIcon';
+import { StarIcon } // Points icon remains StarIcon/yellow as it's distinct from theme color
+from './icons/StarIcon'; 
 
 interface GalleryItemProps {
   illustration: Illustration;
@@ -54,7 +55,7 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ illustration, isUnlock
         </div>
       )}
       <div className="p-4">
-        <h3 className={`text-lg font-semibold ${isUnlocked ? 'text-indigo-700' : 'text-gray-500'}`}>{illustration.name}</h3>
+        <h3 className={`text-lg font-semibold ${isUnlocked ? 'text-orange-700' : 'text-gray-500'}`}>{illustration.name}</h3> {/* Changed to orange for unlocked */}
         {isUnlocked ? (
            <p className="text-sm text-green-600">アンロック済み</p>
         ) : (

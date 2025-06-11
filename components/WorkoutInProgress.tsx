@@ -60,7 +60,7 @@ export const WorkoutInProgress: React.FC<WorkoutInProgressProps> = ({ workout, o
   const progressPercentage = ((workout.durationSeconds - timeLeft) / workout.durationSeconds) * 100;
 
   return (
-    <div className="p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-lg shadow-2xl">
+    <div className="p-4 sm:p-6 lg:p-8 flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-lg shadow-2xl"> {/* Changed gradient to orange/red */}
       <div className="bg-white/20 p-8 rounded-xl shadow-xl max-w-2xl w-full text-center">
         
         {showAd && (
@@ -100,7 +100,7 @@ export const WorkoutInProgress: React.FC<WorkoutInProgressProps> = ({ workout, o
               />
               {/* Progress circle */}
               <circle
-                className="text-yellow-400"
+                className="text-yellow-400" // Progress circle color remains yellow for contrast
                 strokeWidth="10"
                 strokeDasharray="283" // 2 * PI * 45
                 strokeDashoffset={283 - (283 * progressPercentage) / 100}

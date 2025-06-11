@@ -4,7 +4,7 @@ import React from 'react';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost' | 'success';
   size?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
+  children?: React.ReactNode; // Made children optional
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
 }
@@ -23,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   let variantStyles = '';
   switch (variant) {
     case 'primary':
-      variantStyles = 'bg-indigo-600 hover:bg-indigo-700 text-white focus:ring-indigo-500';
+      variantStyles = 'bg-orange-600 hover:bg-orange-700 text-white focus:ring-orange-500'; // Changed to orange
       break;
     case 'secondary':
       variantStyles = 'bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-400 border border-gray-300';
@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
       variantStyles = 'bg-green-500 hover:bg-green-600 text-white focus:ring-green-400';
       break;
     case 'ghost':
-      variantStyles = 'bg-transparent hover:bg-indigo-50 text-indigo-600 focus:ring-indigo-500 shadow-none';
+      variantStyles = 'bg-transparent hover:bg-orange-100 text-orange-600 focus:ring-orange-500 shadow-none'; // Changed to orange
       break;
   }
 
@@ -51,15 +51,18 @@ export const Button: React.FC<ButtonProps> = ({
       sizeStyles = 'px-8 py-3 text-lg';
       break;
   }
+  
+  // Determine if it's an icon-only button to adjust spacing for icons if no children are present.
+  const isIconOnly = !children && (leftIcon || rightIcon);
 
   return (
     <button
       className={`${baseStyles} ${variantStyles} ${sizeStyles} ${className}`}
       {...props}
     >
-      {leftIcon && <span className="mr-2">{leftIcon}</span>}
+      {leftIcon && <span className={children || rightIcon ? "mr-2" : ""}>{leftIcon}</span>}
       {children}
-      {rightIcon && <span className="ml-2">{rightIcon}</span>}
+      {rightIcon && <span className={children || leftIcon ? "ml-2" : ""}>{rightIcon}</span>}
     </button>
   );
 };
