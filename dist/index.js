@@ -4,11 +4,6 @@
   const React = window.React;
   const ReactDOM = window.ReactDOM;
 
-  // types.ts (Interfaces and types are for TypeScript, not directly in JS output)
-  // export interface Workout { ... }
-  // export interface Illustration { ... }
-  // export type AppView = ...;
-
   // constants.ts
   const APP_NAME = "わくわくトレーニング";
   const WORKOUT_DURATION_STEP_SECONDS = 30;
@@ -39,58 +34,58 @@
     try {
       const audio = new Audio(soundFile);
       audio.play().catch(error => {
-        console.warn(\`Could not play sound: \${soundFile}\`, error);
+        console.warn(`Could not play sound: ${soundFile}`, error);
       });
     } catch (error) {
-      console.error(\`Error initializing sound: \${soundFile}\`, error);
+      console.error(`Error initializing sound: ${soundFile}`, error);
     }
   };
 
   // components/icons/LockIcon.tsx
   const LockIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: \`w-5 h-5 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: `w-5 h-5 ${className || ''}` },
       React.createElement('path', { fillRule: "evenodd", d: "M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z", clipRule: "evenodd" })
     )
   );
 
   // components/icons/StarIcon.tsx
   const StarIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: \`w-5 h-5 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: `w-5 h-5 ${className || ''}` },
       React.createElement('path', { fillRule: "evenodd", d: "M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z", clipRule: "evenodd" })
     )
   );
 
   // components/icons/FitnessIcon.tsx
   const FitnessIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: \`w-6 h-6 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: `w-6 h-6 ${className || ''}` },
       React.createElement('path', { d: "M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14L4.14 5.57L2 7.71L3.43 9.14L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22L14.86 20.57L16.29 22L18.43 19.86L19.86 21.29L21.29 19.86L19.86 18.43L22 16.29L20.57 14.86Z" })
     )
   );
 
   // components/icons/GalleryIcon.tsx
   const GalleryIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: \`w-6 h-6 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", className: `w-6 h-6 ${className || ''}` },
       React.createElement('path', { d: "M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" })
     )
   );
   
   // components/icons/PlusIcon.tsx
   const PlusIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: \`w-5 h-5 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: `w-5 h-5 ${className || ''}` },
       React.createElement('path', { d: "M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" })
     )
   );
 
   // components/icons/MinusIcon.tsx
   const MinusIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: \`w-5 h-5 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", className: `w-5 h-5 ${className || ''}` },
       React.createElement('path', { d: "M5.75 10.75a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75z" })
     )
   );
 
   // components/icons/ClockIcon.tsx
   const ClockIcon = ({ className }) => (
-    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", className: \`w-6 h-6 \${className || ''}\` },
+    React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", className: `w-6 h-6 ${className || ''}` },
       React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" })
     )
   );
@@ -113,7 +108,7 @@
       case 'lg': sizeStyles = 'px-8 py-3 text-lg'; break;
     }
     return (
-      React.createElement('button', { className: \`\${baseStyles} \${variantStyles} \${sizeStyles} \${className}\`, ...props },
+      React.createElement('button', { className: `${baseStyles} ${variantStyles} ${sizeStyles} ${className}`, ...props },
         leftIcon && React.createElement('span', { className: "mr-2" }, leftIcon),
         children,
         rightIcon && React.createElement('span', { className: "ml-2" }, rightIcon)
@@ -130,7 +125,7 @@
             React.createElement('h1', {
               className: "text-3xl font-bold text-indigo-700 cursor-pointer",
               onClick: () => setView('home'),
-              'aria-label': \`\${APP_NAME} ホーム\`
+              'aria-label': `${APP_NAME} ホーム`
             }, APP_NAME),
             React.createElement('nav', { className: "flex items-center space-x-4" },
               React.createElement(Button, {
@@ -149,7 +144,7 @@
               }, "ギャラリー"),
               React.createElement('div', { className: "flex items-center bg-yellow-400 text-yellow-900 font-semibold px-4 py-2 rounded-full shadow", 'aria-live': "polite" },
                 React.createElement(StarIcon, { className: "w-6 h-6 mr-2 text-yellow-700" }),
-                React.createElement('span', null, \`\${points} ポイント\`)
+                React.createElement('span', null, `${points} ポイント`)
               )
             )
           )
@@ -185,7 +180,7 @@
             onClick: (e) => e.stopPropagation()
           },
           React.createElement('h2', { id: "duration-modal-title", className: "text-2xl sm:text-3xl font-bold text-indigo-700 mb-6 text-center" },
-            \`\${workout.name} - 時間設定\`
+            `${workout.name} - 時間設定`
           ),
           React.createElement('div', { className: "mb-6 text-center" },
             React.createElement('p', { className: "text-lg text-gray-700 mb-2" }, "ワークアウトの時間を選択してください。"),
@@ -193,21 +188,21 @@
               React.createElement(Button, { onClick: decrementSteps, disabled: currentSteps <= MIN_WORKOUT_DURATION_STEPS, variant: "secondary", size: "md", 'aria-label': "時間を減らす", className: "p-3" },
                 React.createElement(MinusIcon, { className: "w-5 h-5" })
               ),
-              React.createElement('div', { className: "text-3xl sm:text-4xl font-bold text-indigo-600 w-28 text-center", 'aria-live': "polite" }, \`\${currentDuration}秒\`),
+              React.createElement('div', { className: "text-3xl sm:text-4xl font-bold text-indigo-600 w-28 text-center", 'aria-live': "polite" }, `${currentDuration}秒`),
               React.createElement(Button, { onClick: incrementSteps, disabled: currentSteps >= MAX_WORKOUT_DURATION_STEPS, variant: "secondary", size: "md", 'aria-label': "時間を増やす", className: "p-3" },
                 React.createElement(PlusIcon, { className: "w-5 h-5" })
               )
             ),
-            React.createElement('p', { className: "text-xs text-gray-500" }, \`(\${MIN_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒 から \${MAX_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒まで)\`)
+            React.createElement('p', { className: "text-xs text-gray-500" }, `(${MIN_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒 から ${MAX_WORKOUT_DURATION_STEPS * WORKOUT_DURATION_STEP_SECONDS}秒まで)`)
           ),
           React.createElement('div', { className: "mb-8 p-4 bg-indigo-50 rounded-lg text-center" },
             React.createElement('div', { className: "flex items-center justify-center text-xl sm:text-2xl font-semibold text-green-600" },
               React.createElement(StarIcon, { className: "w-6 h-6 mr-2 text-yellow-500" }),
-              \`獲得予定ポイント: \${currentPoints}\`
+              `獲得予定ポイント: ${currentPoints}`
             ),
             React.createElement('div', { className: "flex items-center justify-center text-md sm:text-lg text-gray-600 mt-1" },
               React.createElement(ClockIcon, { className: "w-5 h-5 mr-2 text-gray-500" }),
-              \`選択中の時間: \${currentDuration}秒\`
+              `選択中の時間: ${currentDuration}秒`
             )
           ),
           React.createElement('div', { className: "flex flex-col sm:flex-row gap-3" },
@@ -316,7 +311,7 @@
               src: AD_VIDEO_URL, width: "100%", height: "auto", autoPlay: true, muted: true, loop: false, playsInline: true, className: "rounded",
               onError: (e) => console.error("Ad video error:", e)
             }, "お使いのブラウザはビデオタグをサポートしていません。"),
-            React.createElement('p', { className: "text-sm mt-2 text-yellow-300" }, \`広告 (残り \${adTimeRemaining} 秒)\`)
+            React.createElement('p', { className: "text-sm mt-2 text-yellow-300" }, `広告 (残り ${adTimeRemaining} 秒)`)
           ),
           React.createElement('h2', { className: "text-4xl font-bold mb-4" }, workout.name),
           React.createElement('p', { className: "text-lg mb-6 opacity-90 leading-relaxed" }, workout.instructions),
@@ -347,29 +342,29 @@
       React.createElement('div', { className: "group bg-white rounded-xl shadow-lg overflow-hidden relative transition-all duration-300 ease-in-out transform hover:shadow-2xl hover:-translate-y-1" },
         React.createElement('img', {
           src: illustration.thumbnailUrl, alt: illustration.name,
-          className: \`w-full h-48 object-cover transition-all duration-300 \${!isUnlocked ? 'filter grayscale opacity-60' : 'group-hover:opacity-80'}\`,
+          className: `w-full h-48 object-cover transition-all duration-300 ${!isUnlocked ? 'filter grayscale opacity-60' : 'group-hover:opacity-80'}`,
           'aria-label': illustration.name
         }),
         !isUnlocked && React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4" },
           React.createElement(LockIcon, { className: "w-12 h-12 text-white opacity-70 mb-2", 'aria-hidden': "true" }),
           React.createElement('div', { className: "flex items-center text-yellow-400 font-semibold text-lg mb-3" },
-            React.createElement(StarIcon, { className: "w-5 h-5 mr-1", 'aria-hidden': "true" }), \`\${illustration.cost} ポイント\`
+            React.createElement(StarIcon, { className: "w-5 h-5 mr-1", 'aria-hidden': "true" }), `${illustration.cost} ポイント`
           ),
           React.createElement(Button, {
             onClick: onUnlock, disabled: !canAfford, variant: canAfford ? "success" : "secondary", size: "sm", className: "w-full",
-            'aria-label': \`\${illustration.name}をアンロックする (\${illustration.cost}ポイント必要)\`
+            'aria-label': `${illustration.name}をアンロックする (${illustration.cost}ポイント必要)`
           }, canAfford ? 'アンロック' : 'ポイント不足')
         ),
         isUnlocked && React.createElement('div', {
             className: "absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300 cursor-pointer",
             onClick: onView, role: "button", tabIndex: 0,
             onKeyDown: (e) => (e.key === 'Enter' || e.key === ' ') && onView(),
-            'aria-label': \`\${illustration.name}を全画面表示\`
+            'aria-label': `${illustration.name}を全画面表示`
           },
           React.createElement('span', { className: "text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300" }, "全画面表示")
         ),
         React.createElement('div', { className: "p-4" },
-          React.createElement('h3', { className: \`text-lg font-semibold \${isUnlocked ? 'text-indigo-700' : 'text-gray-500'}\` }, illustration.name),
+          React.createElement('h3', { className: `text-lg font-semibold ${isUnlocked ? 'text-indigo-700' : 'text-gray-500'}` }, illustration.name),
           isUnlocked ?
             React.createElement('p', { className: "text-sm text-green-600" }, "アンロック済み") :
             React.createElement('p', { className: "text-sm text-gray-400" }, "ロック中")
@@ -459,7 +454,7 @@
       playSound(SOUND_WORKOUT_COMPLETE);
       setActiveWorkout(null);
       setCurrentView('workout_selection');
-      setShowWorkoutCompleteMessage(\`おめでとうございます！\${pointsAwarded}ポイント獲得しました！\`);
+      setShowWorkoutCompleteMessage(`おめでとうございます！${pointsAwarded}ポイント獲得しました！`);
       setTimeout(() => setShowWorkoutCompleteMessage(null), 3000);
     }, []);
 
@@ -532,7 +527,7 @@
           renderView()
         ),
         React.createElement('footer', { className: "bg-gray-800 text-white text-center p-4" },
-          React.createElement('p', null, \`© \${new Date().getFullYear()} \${APP_NAME}. All rights reserved.\`)
+          React.createElement('p', null, `© ${new Date().getFullYear()} ${APP_NAME}. All rights reserved.`)
         )
       )
     );
@@ -549,13 +544,12 @@
     root.render(
       React.createElement(React.StrictMode, null, React.createElement(App))
     );
-  } else if (ReactDOM && typeof ReactDOM.render === 'function') { // Fallback for older React versions if needed, though CDN is 18.2.0
+  } else if (ReactDOM && typeof ReactDOM.render === 'function') { // Fallback for older React versions
     ReactDOM.render(
       React.createElement(React.StrictMode, null, React.createElement(App)),
       rootElement
     );
-  }
-  else {
+  } else {
     console.error('ReactDOM.createRoot (or ReactDOM.render) is not available. Ensure React and ReactDOM are loaded globally.');
   }
 
